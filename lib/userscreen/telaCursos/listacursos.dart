@@ -16,7 +16,7 @@ class ListaCursos extends StatefulWidget {
 
 class _ListaCursosState extends State<ListaCursos> {
   final _curseListManager = CurseListManager();
-  List<CurseListDb> lista2 = [];
+  List<CurseListDb> lista = [];
 
 
   @override
@@ -24,7 +24,7 @@ class _ListaCursosState extends State<ListaCursos> {
     super.initState();
     _query().then((value) {
       setState(() {
-        lista2 = value;
+        lista = value;
       });
     });
   }
@@ -40,7 +40,7 @@ class _ListaCursosState extends State<ListaCursos> {
         child: Column(
           children: [
             Column(
-              children: lista2.map((item2) {
+              children: lista.map((item2) {
                 if (item2.idCurso == widget.cursePrincipalDb.id.toInt()) {
                   return Container(
                     margin: const EdgeInsets.all(3.0),

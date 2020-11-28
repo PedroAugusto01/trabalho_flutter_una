@@ -1,4 +1,4 @@
-#Tue Nov 24 19:50:01 BRT 2020
+#Fri Nov 27 20:32:59 BRT 2020
 base.0=D\:\\Pedro\\Una 2020\\Flutter\\Projetoteste\\flutter_app\\flutter_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
