@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/signup/signupform.dart';
-import 'package:flutter_app/signup/signup.dart';
-import 'package:flutter_app/signup/signupintroduce.dart';
 import 'package:flutter_app/database/databasemanager.dart';
 import 'package:flutter_app/database/usermanager.dart';
 import 'package:flutter_app/entities/user.dart';
@@ -24,8 +22,8 @@ class _SignUpWithMail extends State<SignUpWithMail> {
 
   PageController _pageController = PageController();
 
-  String _nextText = 'Next';
-  Color _nextColor = Colors.green[800];
+  String _nextText = 'Submit';
+  Color _nextColor = Colors.blue[800];
 
   _updateMyTitle(List<dynamic> data) {
     setState(() {
@@ -84,27 +82,11 @@ class _SignUpWithMail extends State<SignUpWithMail> {
                           width: 400,
                           height: 500,
                           child: PageView(
-                            onPageChanged: (int page) {
-                              print('the pageView page is $page');
-                              if (page == 2) {
-                                setState(() {
-                                  _nextText = 'Submit';
-                                  _nextColor = Colors.blue[900];
-                                });
-                              } else {
-                                setState(() {
-                                  _nextText = 'Next';
-                                  _nextColor = Colors.green[800];
-                                });
-                              }
-                            },
                             controller: _pageController,
                             children: <Widget>[
                               SignUpForm(
                                   _emailTextController, _passwordTextController,
                                   _nameTextController, _updateMyTitle),
-                              SignUpImages(_updateMyTitle),
-                              SignUpIntroduce(_introduceTextController)
                             ],
                           ),
                         ),
@@ -131,16 +113,17 @@ class _SignUpWithMail extends State<SignUpWithMail> {
                                   color: Colors.white,
                                   padding: EdgeInsets.all(10),
                                   onPressed: () {
-                                    print('email: ${_emailTextController.text}');
-                                    print('password: ${_passwordTextController
-                                        .text}');
-                                    print('name: ${_nameTextController.text}');
-                                    print('intro: ${_introduceTextController
-                                        .text}');
+                                      print('email: ${_emailTextController
+                                          .text}');
+                                      print('password: ${_passwordTextController
+                                          .text}');
+                                      print(
+                                          'name: ${_nameTextController.text}');
+                                      print('intro: ${_introduceTextController
+                                          .text}');
 
-                                    print('_userDataMap $_userDataMap');
-                                    Navigator.pop(context);
-//                              _query();
+                                      print('_userDataMap $_userDataMap');
+                                      Navigator.pop(context);
                                   },
                                 ),
                               ),
@@ -166,14 +149,69 @@ class _SignUpWithMail extends State<SignUpWithMail> {
                                   color: _nextColor,
                                   padding: EdgeInsets.all(10),
                                   onPressed: () {
-                                    if (_pageController.page.toInt() == 2) {
-                                      print('last page');
-                                      _signUpNewUser();
+                                    print(_passwordTextController.text.length);
+                                    if (_emailTextController.text == "") {
+                                      showDialog(context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                              title: Text("Erro"),
+                                              content: Text("O campo do E-mail se encontra vazio"),
+                                              actions: <Widget>[
+                                                FlatButton(
+                                                    child: Text("OK"),
+                                                    onPressed: () {
+                                                      Navigator.pop(context);
+                                                    }
+                                                )
+                                              ]
+                                          );
+                                        },
+                                      );
+                                    } else if (_passwordTextController.text == "" || _passwordTextController.text.length <= 7 || _passwordTextController.text.length >= 27){
+                                      showDialog(context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                              title: Text("Erro"),
+                                              content: Text("O campo de senha precisa ser preenchido e precisa ser maior que 8 caracteres e menos que 26."),
+                                              actions: <Widget>[
+                                                FlatButton(
+                                                    child: Text("OK"),
+                                                    onPressed: () {
+                                                      Navigator.pop(context);
+                                                    }
+                                                )
+                                              ]
+                                          );
+                                        },
+                                      );
+                                    } else if (_nameTextController.text == ""){
+                                      showDialog(context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                              title: Text("Erro"),
+                                              content: Text("O campo de nome precisa ser preenchido"),
+                                              actions: <Widget>[
+                                                FlatButton(
+                                                    child: Text("OK"),
+                                                    onPressed: () {
+                                                      Navigator.pop(context);
+                                                    }
+                                                )
+                                              ]
+                                          );
+                                        },
+                                      );
                                     } else {
-                                      _pageController.animateToPage(
-                                          _pageController.page.toInt() + 1,
-                                          duration: Duration(milliseconds: 200),
-                                          curve: Curves.easeIn);
+                                      if (_pageController.page.toInt() == 0) {
+                                        print('last page');
+                                        _signUpNewUser();
+                                      } else {
+                                        _pageController.animateToPage(
+                                            _pageController.page.toInt() + 1,
+                                            duration: Duration(
+                                                milliseconds: 200),
+                                            curve: Curves.easeIn);
+                                      }
                                     }
                                   },
                                 ),
@@ -202,16 +240,10 @@ class _SignUpWithMail extends State<SignUpWithMail> {
         _userDataMap['gender'],
         _emailTextController.text,
         _passwordTextController.text,
-        _userDataMap['age'],
-        _userDataMap['image0'],
-        _userDataMap['image1'],
-        _userDataMap['image2'],
-        _userDataMap['image3'],
-        _introduceTextController.text
+        _userDataMap['age']
     );
 
     final id = await userManager.insertNewUser(newUser);
-    print('inserted row id: $id');
     if (id != null) {
       Navigator.push(
         context,
@@ -231,8 +263,6 @@ class _SignUpWithMail extends State<SignUpWithMail> {
     final allUsers = await userManager.getUsers();
     print('query all users:');
     allUsers.forEach((selectedUser) {
-      print(selectedUser);
-      print('selected user age is ${selectedUser.age}');
       return null;
     });
   }

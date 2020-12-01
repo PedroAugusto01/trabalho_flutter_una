@@ -43,12 +43,7 @@ class DatabaseManager {
             ${UserManager.columnGender} TEXT NOT NULL,
             ${UserManager.columnEmail} TEXT NOT NULL,
             ${UserManager.columnPassword} TEXT NOT NULL,
-            ${UserManager.columnAge} INTEGER NOT NULL,
-            ${UserManager.columnImageZero} TEXT,
-            ${UserManager.columnImageOne} TEXT,
-            ${UserManager.columnImageTwo} TEXT,
-            ${UserManager.columnImageThree} TEXT,
-            ${UserManager.columnImageIntroduction} TEXT
+            ${UserManager.columnAge} INTEGER NOT NULL   
           )
           ''');
     await db.execute('''

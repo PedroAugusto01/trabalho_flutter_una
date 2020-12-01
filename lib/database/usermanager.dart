@@ -11,11 +11,6 @@ class UserManager {
   static final columnEmail = 'email';
   static final columnPassword = 'password';
   static final columnAge = 'age';
-  static final columnImageZero = 'image0';
-  static final columnImageOne = 'image1';
-  static final columnImageTwo = 'image2';
-  static final columnImageThree = 'image3';
-  static final columnImageIntroduction = 'intro';
 
   Future<int> insertNewUser(User user) async {
     final Database db = await DatabaseManager.instance.database;
@@ -82,11 +77,6 @@ class UserManager {
         singleMap[columnGender],
         singleMap[columnEmail],
         singleMap[columnPassword],
-        singleMap[columnAge],
-        singleMap[columnImageZero],
-        singleMap[columnImageOne],
-        singleMap[columnImageTwo],
-        singleMap[columnImageThree],
-        singleMap[columnImageIntroduction]);
+        singleMap[columnAge]);
   }
 }
