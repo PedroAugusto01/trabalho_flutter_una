@@ -1,0 +1,101 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter --no-color run --machine --track-widget-creation --device-id=emulator-5554 --start-paused --dart-define=flutter.inspector.structuredErrors=true lib\main.dart
+
+## exception
+
+ClientException: Connection closed while receiving data
+
+```
+#0      IOClient.send.<anonymous closure> (package:http/src/io_client.dart:50:13)
+#1      _invokeErrorHandler (dart:async/async_error.dart:16:24)
+#2      _HandleErrorStream._handleError (dart:async/stream_pipe.dart:282:9)
+#3      _ForwardingStreamSubscription._handleError (dart:async/stream_pipe.dart:161:13)
+#4      _HttpClientResponse.listen.<anonymous closure> (dart:_http/http_impl.dart:440:16)
+#5      _rootRunBinary (dart:async/zone.dart:1214:47)
+#6      _CustomZone.runBinary (dart:async/zone.dart:1107:19)
+#7      _CustomZone.runBinaryGuarded (dart:async/zone.dart:1013:7)
+#8      _BufferingStreamSubscription._sendError.sendError (dart:async/stream_impl.dart:376:15)
+#9      _BufferingStreamSubscription._sendError (dart:async/stream_impl.dart:394:16)
+#10     _BufferingStreamSubscription._addError (dart:async/stream_impl.dart:294:7)
+#11     _ForwardingStreamSubscription._addError (dart:async/stream_pipe.dart:132:11)
+#12     _addErrorWithReplacement (dart:async/stream_pipe.dart:180:8)
+#13     _HandleErrorStream._handleError (dart:async/stream_pipe.dart:287:11)
+#14     _ForwardingStreamSubscription._handleError (dart:async/stream_pipe.dart:161:13)
+#15     _rootRunBinary (dart:async/zone.dart:1214:47)
+#16     _CustomZone.runBinary (dart:async/zone.dart:1107:19)
+#17     _CustomZone.runBinaryGuarded (dart:async/zone.dart:1013:7)
+#18     _BufferingStreamSubscription._sendError.sendError (dart:async/stream_impl.dart:376:15)
+#19     _BufferingStreamSubscription._sendError (dart:async/stream_impl.dart:394:16)
+#20     _BufferingStreamSubscription._addError (dart:async/stream_impl.dart:294:7)
+#21     _SyncStreamControllerDispatch._sendError (dart:async/stream_controller.dart:812:19)
+#22     _StreamController._addError (dart:async/stream_controller.dart:690:7)
+#23     _StreamController.addError (dart:async/stream_controller.dart:642:5)
+#24     _HttpParser._reportBodyError (dart:_http/http_parser.dart:1158:22)
+#25     _HttpParser._onDone (dart:_http/http_parser.dart:865:9)
+#26     _rootRun (dart:async/zone.dart:1182:47)
+#27     _CustomZone.run (dart:async/zone.dart:1093:19)
+#28     _CustomZone.runGuarded (dart:async/zone.dart:997:7)
+#29     _BufferingStreamSubscription._sendDone.sendDone (dart:async/stream_impl.dart:410:13)
+#30     _BufferingStreamSubscription._sendDone (dart:async/stream_impl.dart:420:15)
+#31     _BufferingStreamSubscription._close (dart:async/stream_impl.dart:305:7)
+#32     _SyncStreamControllerDispatch._sendDone (dart:async/stream_controller.dart:816:19)
+#33     _StreamController._closeUnchecked (dart:async/stream_controller.dart:671:7)
+#34     _StreamController.close (dart:async/stream_controller.dart:664:5)
+#35     _Socket._onData (dart:io-patch/socket_patch.dart:1976:21)
+#36     _rootRunUnary (dart:async/zone.dart:1198:47)
+#37     _CustomZone.runUnary (dart:async/zone.dart:1100:19)
+#38     _CustomZone.runUnaryGuarded (dart:async/zone.dart:1005:7)
+#39     _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:357:11)
+#40     _BufferingStreamSubscription._add (dart:async/stream_impl.dart:285:7)
+#41     _SyncStreamControllerDispatch._sendData (dart:async/stream_controller.dart:808:19)
+#42     _StreamController._add (dart:async/stream_controller.dart:682:7)
+#43     _StreamController.add (dart:async/stream_controller.dart:624:5)
+#44     new _RawSocket.<anonymous closure> (dart:io-patch/socket_patch.dart:1512:35)
+#45     _NativeSocket.issueReadEvent.issue (dart:io-patch/socket_patch.dart:1010:18)
+#46     _rootRun (dart:async/zone.dart:1182:47)
+#47     _CustomZone.run (dart:async/zone.dart:1093:19)
+#48     _CustomZone.runGuarded (dart:async/zone.dart:997:7)
+#49     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1037:23)
+#50     _rootRun (dart:async/zone.dart:1190:13)
+#51     _CustomZone.run (dart:async/zone.dart:1093:19)
+#52     _CustomZone.runGuarded (dart:async/zone.dart:997:7)
+#53     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1037:23)
+#54     _microtaskLoop (dart:async/schedule_microtask.dart:41:21)
+#55     _startMicrotaskLoop (dart:async/schedule_microtask.dart:50:5)
+#56     _runPendingImmediateCallback (dart:isolate-patch/isolate_patch.dart:118:13)
+#57     _RawReceivePortImpl._handleMessage (dart:isolate-patch/isolate_patch.dart:169:5)
+```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel dev, 1.23.0-7.0.pre, on Microsoft Windows [versÃ£o 10.0.18363.1139], locale pt-BR)
+    • Flutter version 1.23.0-7.0.pre at C:\src\flutter
+    • Framework revision db6e2d8aa5 (10 weeks ago), 2020-09-25 06:47:03 -0400
+    • Engine revision 3a73d073c8
+    • Dart version 2.11.0 (build 2.11.0-161.0.dev)
+
+[✓] Android toolchain - develop for Android devices (Android SDK version 29.0.3)
+    • Android SDK at C:\Users\pedin\AppData\Local\Android\sdk
+    • Platform android-29, build-tools 29.0.3
+    • Java binary at: C:\Program Files (x86)\Common Files\Oracle\Java\javapath\java.exe
+    • Java version Java(TM) SE Runtime Environment (build 1.8.0_261-b12)
+    • All Android licenses accepted.
+
+[!] Android Studio (not installed)
+    • Android Studio not found; download from https://developer.android.com/studio/index.html
+      (or visit https://flutter.dev/docs/get-started/install/windows#android-setup for detailed instructions).
+
+[✓] VS Code (version 1.51.1)
+    • VS Code at C:\Users\pedin\AppData\Local\Programs\Microsoft VS Code
+    • Flutter extension version 3.16.0
+
+[✓] Connected device (1 available)
+    • Android SDK built for x86 (mobile) • emulator-5554 • android-x86 • Android 8.0.0 (API 26) (emulator)
+
+! Doctor found issues in 1 category.
+```
